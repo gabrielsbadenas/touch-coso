@@ -41,12 +41,23 @@ function preload() {
 }
 function create() {
     this.add.image(width / 2, height / 2, 'bg')
+    this.add.image(width / 2, height / 2, 'chansey')
 
-    this.add.image(500,200,'bulbasaur')
-    this.add.image(500,144,'bird')
+    this.add.image(600, 400, 'jigglypuff')
+    this.add.image(width / 1.5, height / 2, 'clefairy')
+    /*
+    const list = ['sandshrew', 'bird',
+                'bulbasaur', 'chansey', 'clefairy',
+                'jigglypuff', 'oddish', 'pikachu',
+                'rattata', 'snorlax', 'squirtle'
+            ]
+    */
+    this.add.image(500, 200, 'bulbasaur')
+    this.add.image(500, 144, 'bird')
     this.add.image(160, 144, 'pikachu')
     this.add.image(160, 400, 'snorlax')
     //this.add.image(,,)
+    this.add.image(480, 60, 'sandshrew')
     this.add.image(255, 255, 'oddish')
     this.add.image(69, 69, 'squirtle')
     this.add.image(180, 180, 'rattata')
