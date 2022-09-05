@@ -6,6 +6,6 @@ app.get('/',(q,s)=>{
 s.send('helo world')
 })
 app.listen(port,()=>{
-console.log('localhost/'+port)
+console.log('localhost:'+port)
 }
 )
