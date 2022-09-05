@@ -19,32 +19,33 @@ function preload() {
     this.load.setBaseURL('./img')
     this.load.image('bg', 'sea-background.png')
     function pkmn() {
-        const list = ['sandshrew', 'bird', 
-        'bulbasaur', 'chansey', 'clefairy',
-        'jigglypuff','oddish','pikachu',
-        'rattata','snorlax','squirtle'
-    ]
+        const list = ['sandshrew', 'bird',
+            'bulbasaur', 'chansey', 'clefairy',
+            'jigglypuff', 'oddish', 'pikachu',
+            'rattata', 'snorlax', 'squirtle'
+        ]
         const png = []
         list.forEach(element => {
-            png.push(element+'.png')
+            png.push(element + '.png')
         });
-        return {list,png}
+        return { list, png }
     }
     const pkmnList = pkmn()
     for (let index = 0; index < pkmnList.list.length; index++) {
         const element = pkmnList.list[index];
         const elementPNG = pkmnList.png[index];
-        this.load.image(element,elementPNG)
-        
+        this.load.image(element, elementPNG)
+
     }
     //this.load.image('','')
 }
 function create() {
     this.add.image(width / 2, height / 2, 'bg')
-    this.add.image(160,144,'pikachu')
+    this.add.image(160, 144, 'pikachu')
+    this.add.image(160, 400, 'snorlax')
     //this.add.image(,,)
-    this.add.image(69,69,'squirtle')
-
-    this.add.image(180,180,'rattata')
+    this.add.image(255, 255, 'oddish')
+    this.add.image(69, 69, 'squirtle')
+    this.add.image(180, 180, 'rattata')
 }
 function update() { }
