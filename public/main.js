@@ -41,6 +41,9 @@ function preload() {
 }
 function create() {
     this.add.image(width / 2, height / 2, 'bg')
+
+    this.add.image(500,200,'bulbasaur')
+    this.add.image(500,144,'bird')
     this.add.image(160, 144, 'pikachu')
     this.add.image(160, 400, 'snorlax')
     //this.add.image(,,)
