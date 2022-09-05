@@ -1,0 +1,26 @@
+{
+  "name": "touch-coso",
+  "version": "1.0.0",
+  "description": "a game for touchscreens",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manaosdeuva/touch-coso.git"
+  },
+  "keywords": [
+    "game"
+  ],
+  "author": "gabriel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manaosdeuva/touch-coso/issues"
+  },
+  "homepage": "https://github.com/manaosdeuva/touch-coso#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  }
+}
