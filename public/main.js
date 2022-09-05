@@ -1,4 +1,4 @@
-const width = 640,height=480
+const width = 640, height = 480
 const config = {
     type: Phaser.AUTO,
     width,
@@ -15,12 +15,31 @@ const config = {
     }
 }
 let game = new Phaser.Game(config)
-function preload(){
+function preload() {
     this.load.setBaseURL('./img')
-    this.load.image('bg','sea-background.png')
+    this.load.image('bg', 'sea-background.png')
+    function pkmn() {
+        const list = ['sandshrew', 'bird', 
+        'bulbasaur', 'chansey', 'clefairy',
+        'jigglypuff','oddish','pikachu',
+        'rattata','snorlax','squirtle'
+    ]
+        const png = []
+        list.forEach(element => {
+            png.push(element+'.png')
+        });
+        return {list,png}
+    }
+    const pkmnList = pkmn()
+    for (let index = 0; index < pkmnList.list.length; index++) {
+        const element = pkmnList.list[index];
+        const elementPNG = pkmnList.png[index];
+        this.load.image(element,elementPNG)
+        
+    }
     //this.load.image('','')
 }
-function create(){
-    this.add.image(width/2,height/2,'bg')
+function create() {
+    this.add.image(width / 2, height / 2, 'bg')
 }
-function update(){}
+function update() { }
