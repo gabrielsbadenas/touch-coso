@@ -41,5 +41,10 @@ function preload() {
 }
 function create() {
     this.add.image(width / 2, height / 2, 'bg')
+    this.add.image(160,144,'pikachu')
+    //this.add.image(,,)
+    this.add.image(69,69,'squirtle')
+
+    this.add.image(180,180,'rattata')
 }
 function update() { }
