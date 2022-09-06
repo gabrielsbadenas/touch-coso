@@ -1,3 +1,7 @@
+//objetivo: hacer un juego en el que cuando se hace click en un
+//pokemon aparezca una pokeball, se sume un punto, el pokemon,
+//aparezca en un lugar random cada vez que se hace click ya sea
+//exitoso o no
 const width = 640, height = 480,
     config = {
         type: Phaser.AUTO,
