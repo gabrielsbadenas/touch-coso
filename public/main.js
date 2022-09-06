@@ -63,3 +63,6 @@ function create() {
     this.add.image(180, 180, 'rattata')
 }
 function update() { }
+function random(min, max) { // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
