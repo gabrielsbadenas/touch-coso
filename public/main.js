@@ -25,7 +25,7 @@ const width = 640, height = 480,
         'rattata', 'snorlax', 'squirtle'
     ]
 let game = new Phaser.Game(config), time
-
+let pointer = new Pointer(game, 0)
 function preload() {
     this.load.setBaseURL('./img')
     this.load.image('bg', 'sea-background.png')
@@ -49,14 +49,71 @@ function preload() {
 
 function create() {
     this.add.image(width / 2, height / 2, 'bg')
+    this.sprites=[]
     for (let index = 1; index < spriteList.length; index++) {
         const element = spriteList[index];
-        this.physics.add.sprite(
-            random(16, 640 - 16), random(16, 480 - 16), element)
+        this.sprites.push(this.physics.add.sprite(
+            randomX(), randomY(), element))
     }
+    for (let index = 0; index < this.sprites.length; index++) {
+        //const element = 
+        this.sprites[index].setInteractive();
+        
+    }
+    this.physics.sprite.setInteractive()
+    this.input.on('gameobjectdown', onObjectClicked)
 }
 
-function update() { }
+function onObjectClicked(pointer, gameObject) {
+    gameObject.setPosition(randomX(), randomY)
+}
+
+function update() {
+    //pointer.LEFT_BUTTON
+}
+function randomX() {
+    return random(16, 640 - 16)
+}
+function randomY() {
+    return random(16, 480 - 16)
+}
 function random(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+/*
+class SceneMain extends Phaser.Scene {
+    constructor() {
+        super('SceneMain');
+    }
+    preload() {
+        this.load.image("face", "images/face.png");
+    }
+    create() {
+ 
+        this.face = this.add.image(game.config.width / 2, game.config.height / 2, "face");
+        this.face.angle = 25;
+         
+        this.face.setInteractive();
+ 
+ 
+        var textConfig={fontSize:'20px',color:'#ff0000',fontFamily: 'Arial'};
+ 
+        this.title=this.add.text(game.config.width/2,game.config.height*.75,"HELLO PHASER!!!",textConfig);
+         
+        //setOrigin() replaces anchor.set()
+        //sprites now default to orign 0.5 for both x and y
+        this.title.setOrigin(0.5,0.5);
+ 
+       //this will listen for a down event 
+       //on every object that is set interactive
+       this.input.on('gameobjectdown',this.onObjectClicked);
+         
+    }
+    onObjectClicked(pointer,gameObject)
+    {
+        gameObject.angle+=10;
+    }
+    update() {}
+}
+https://phasergames.com/phaser-3-basics-images-text-and-click/
+*/
