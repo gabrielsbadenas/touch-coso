@@ -25,7 +25,7 @@ const width = 640, height = 480,
         'rattata', 'snorlax', 'squirtle'
     ]
 let game = new Phaser.Game(config), time
-let pointer = new Pointer(game, 0)
+
 function preload() {
     this.load.setBaseURL('./img')
     this.load.image('bg', 'sea-background.png')
@@ -47,9 +47,25 @@ function preload() {
     //this.load.image('','')
 }
 
+    //let pointer = new Phaser.Pointer(game, 0)
 function create() {
     this.add.image(width / 2, height / 2, 'bg')
     this.sprites=[]
+    /*
+    this.monsters = this.game.add.group();
+var monster;
+monsterData.forEach(function(data) {
+    // create a sprite for them off screen
+    monster = state.monsters.create(1000, state.game.world.centerY, data.image);
+    // center anchor
+    monster.anchor.setTo(0.5);
+    // reference to the database
+    monster.details = data;
+    //enable input so we can click it!
+    monster.inputEnabled = true;
+    monster.events.onInputDown.add(state.onClickMonster, state);
+});
+    */
     for (let index = 1; index < spriteList.length; index++) {
         const element = spriteList[index];
         this.sprites.push(this.physics.add.sprite(
@@ -57,10 +73,9 @@ function create() {
     }
     for (let index = 0; index < this.sprites.length; index++) {
         //const element = 
-        this.sprites[index].setInteractive();
+        this.sprites[index].setCollideWorldBounds(true);
         
     }
-    this.physics.sprite.setInteractive()
     this.input.on('gameobjectdown', onObjectClicked)
 }
 
