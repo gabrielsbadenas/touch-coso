@@ -45,8 +45,8 @@ function preload() {
 
     }
 }
-
 function create() {
+    let puntaje = 0
     this.add.image(width / 2, height / 2, 'bg')
     this.sprites = []
     for (let index = 1; index < spriteList.length; index++) {
@@ -55,6 +55,7 @@ function create() {
             randomX(), randomY(), element).setInteractive()
         sprite.on('pointerdown', function (pointer) {
             this.setTint(0x000000)
+            puntaje++
         })
     }
     for (let index = 0; index < this.sprites.length; index++) {
