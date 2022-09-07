@@ -68,8 +68,12 @@ monsterData.forEach(function(data) {
     */
     for (let index = 1; index < spriteList.length; index++) {
         const element = spriteList[index];
-        this.sprites.push(this.physics.add.sprite(
-            randomX(), randomY(), element))
+        //this.sprites.push(
+        const sprite = this.physics.add.sprite(
+            randomX(), randomY(), element).setInteractive()
+        sprite.on('pointerdown',function(pointer){
+            this.setTint(0x000000)
+        })
     }
     for (let index = 0; index < this.sprites.length; index++) {
         //const element = 
