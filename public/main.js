@@ -44,95 +44,30 @@ function preload() {
         this.load.image(element, elementPNG)
 
     }
-    //this.load.image('','')
 }
 
-    //let pointer = new Phaser.Pointer(game, 0)
 function create() {
     this.add.image(width / 2, height / 2, 'bg')
-    this.sprites=[]
-    /*
-    this.monsters = this.game.add.group();
-var monster;
-monsterData.forEach(function(data) {
-    // create a sprite for them off screen
-    monster = state.monsters.create(1000, state.game.world.centerY, data.image);
-    // center anchor
-    monster.anchor.setTo(0.5);
-    // reference to the database
-    monster.details = data;
-    //enable input so we can click it!
-    monster.inputEnabled = true;
-    monster.events.onInputDown.add(state.onClickMonster, state);
-});
-    */
+    this.sprites = []
     for (let index = 1; index < spriteList.length; index++) {
         const element = spriteList[index];
-        //this.sprites.push(
         const sprite = this.physics.add.sprite(
             randomX(), randomY(), element).setInteractive()
-        sprite.on('pointerdown',function(pointer){
+        sprite.on('pointerdown', function (pointer) {
             this.setTint(0x000000)
         })
     }
     for (let index = 0; index < this.sprites.length; index++) {
-        //const element = 
         this.sprites[index].setCollideWorldBounds(true);
-        
+
     }
     this.input.on('gameobjectdown', onObjectClicked)
 }
-/*
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create });
-
-function preload() {
-
-    game.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
-    game.load.image('background','assets/misc/starfield.jpg');
-
-}
-
-var button;
-var background;
-
-function create() {
-
-    game.stage.backgroundColor = '#182d3b';
-
-    background = game.add.tileSprite(0, 0, 800, 600, 'background');
-
-    button = game.add.button(game.world.centerX - 95, 400, 'button', actionOnClick, this, 2, 1, 0);
-
-    button.onInputOver.add(over, this);
-    button.onInputOut.add(out, this);
-    button.onInputUp.add(up, this);
-
-}
-
-function up() {
-    console.log('button up', arguments);
-}
-
-function over() {
-    console.log('button over');
-}
-
-function out() {
-    console.log('button out');
-}
-
-function actionOnClick () {
-
-    background.visible =! background.visible;
-
-}
-*/
 function onObjectClicked(pointer, gameObject) {
     gameObject.setPosition(randomX(), randomY)
 }
 
 function update() {
-    //pointer.LEFT_BUTTON
 }
 function randomX() {
     return random(16, 640 - 16)
@@ -143,40 +78,3 @@ function randomY() {
 function random(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-/*
-class SceneMain extends Phaser.Scene {
-    constructor() {
-        super('SceneMain');
-    }
-    preload() {
-        this.load.image("face", "images/face.png");
-    }
-    create() {
- 
-        this.face = this.add.image(game.config.width / 2, game.config.height / 2, "face");
-        this.face.angle = 25;
-         
-        this.face.setInteractive();
- 
- 
-        var textConfig={fontSize:'20px',color:'#ff0000',fontFamily: 'Arial'};
- 
-        this.title=this.add.text(game.config.width/2,game.config.height*.75,"HELLO PHASER!!!",textConfig);
-         
-        //setOrigin() replaces anchor.set()
-        //sprites now default to orign 0.5 for both x and y
-        this.title.setOrigin(0.5,0.5);
- 
-       //this will listen for a down event 
-       //on every object that is set interactive
-       this.input.on('gameobjectdown',this.onObjectClicked);
-         
-    }
-    onObjectClicked(pointer,gameObject)
-    {
-        gameObject.angle+=10;
-    }
-    update() {}
-}
-https://phasergames.com/phaser-3-basics-images-text-and-click/
-*/
