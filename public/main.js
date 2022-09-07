@@ -27,6 +27,7 @@ const width = 640, height = 480,
 let game = new Phaser.Game(config), time
 
 function preload() {
+    //this.load.https://phaser.io/examples/v2/text/bitmap-fonts
     this.load.setBaseURL('./img')
     this.load.image('bg', 'sea-background.png')
     function pkmn() {
