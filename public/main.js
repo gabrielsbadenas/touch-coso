@@ -48,26 +48,28 @@ function preload() {
 function create() {
     let puntaje = 0
     this.add.image(width / 2, height / 2, 'bg')
-    this.sprites = []
     for (let index = 1; index < spriteList.length; index++) {
         const element = spriteList[index];
         const sprite = this.physics.add.sprite(
             randomX(), randomY(), element).setInteractive()
+        //sprite.setColliderWorldBounds(true)
         sprite.on('pointerdown', function (pointer) {
-            this.setTint(0x000000)
+            this.setTint(0x00ff00)
             puntaje++
         })
     }
-    for (let index = 0; index < this.sprites.length; index++) {
-        this.sprites[index].setCollideWorldBounds(true);
-
-    }
+    let esto = this
+    this.input.on('pointermove',function(pointer){
+        if(pointer.isDown){
+            esto.add.image(pointer.x,pointer.y,'ball')
+        }
+    })
     this.input.on('gameobjectdown', onObjectClicked)
 }
 function onObjectClicked(pointer, gameObject) {
-    gameObject.setPosition(randomX(), randomY)
+    //si queres hacer que no aparezcan mas tenes que ponerle una posicion undefined
+    gameObject.setPosition(randomX(), randomY())
 }
-
 function update() {
 }
 function randomX() {
