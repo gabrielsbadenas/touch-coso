@@ -73,10 +73,10 @@ function onObjectClicked(pointer, gameObject) {
 function update() {
 }
 function randomX() {
-    return random(16, 640 - 16)
+    return random(16, width - 16)
 }
 function randomY() {
-    return random(16, 480 - 16)
+    return random(16, height - 16)
 }
 function random(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
