@@ -27,7 +27,6 @@ const width = 640, height = 480,
 let game = new Phaser.Game(config), time
 
 function preload() {
-    //this.load.https://phaser.io/examples/v2/text/bitmap-fonts
     this.load.setBaseURL('./img')
     this.load.image('bg', 'sea-background.png')
     function pkmn() {
@@ -49,6 +48,10 @@ function preload() {
 function create() {
     let puntaje = 0
     this.add.image(width / 2, height / 2, 'bg')
+    let text = this.add.text(16, 16, '', { font: '16px Courier', fill: '#000000' })
+    text.setText([
+        'Points: '
+    ])
     for (let index = 1; index < spriteList.length; index++) {
         const element = spriteList[index];
         const sprite = this.physics.add.sprite(
@@ -57,12 +60,16 @@ function create() {
         sprite.on('pointerdown', function (pointer) {
             this.setTint(0x00ff00)
             puntaje++
+            text.setText([
+                'Points: '+puntaje
+            ])
         })
     }
     let esto = this
-    this.input.on('pointermove',function(pointer){
-        if(pointer.isDown){
-            esto.add.image(pointer.x,pointer.y,'ball')
+    this.input.on('pointermove', function (pointer) {
+        if (pointer.isDown) {
+            esto.add.image(pointer.x, pointer.y, 'ball')
+            //console.log(pointer.x, pointer.y)
         }
     })
     this.input.on('gameobjectdown', onObjectClicked)
