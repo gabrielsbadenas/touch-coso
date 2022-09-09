@@ -46,6 +46,13 @@ function preload() {
     }
 }
 
+function useBall(){
+    if(ballsRestantantes<=0){
+        alert('GAME OVER')
+    }
+    ballsRestantantes--
+}
+
 function create() {
     let puntaje = 0
     let esto = this
@@ -68,13 +75,13 @@ function create() {
                 'Points: ' + puntaje
             ])
             esto.add.image(pointer.x, pointer.y, 'ball')
-            ballsRestantantes--
+            useBall()
         })
     }
     this.input.on('pointermove', function (pointer) {
         if (pointer.isDown) {
             esto.add.image(pointer.x, pointer.y, 'ball')
-            ballsRestantantes--
+            useBall()
         }
     })
     this.input.on('gameobjectdown', onObjectClicked)
