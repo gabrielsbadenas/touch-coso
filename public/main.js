@@ -80,6 +80,7 @@ function onObjectClicked(pointer, gameObject) {
 }
 
 function update() {
+    timeText.setText(['Time: '+new Date().getSeconds()])
 }
 
 function randomX() {
