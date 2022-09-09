@@ -25,7 +25,7 @@ const width = 640, height = 480,
         'rattata', 'snorlax', 'squirtle'
     ]
 
-let game = new Phaser.Game(config), timeText, ballsRestantantes = 99, ballText, puntaje = 0
+let game = new Phaser.Game(config), timeText, ballsRestantantes = 99, ballText, puntaje = 0, startTime, gameOver
 //to do hacer que cuando se hace click se reste una pokeball
 function preload() {
     this.load.setBaseURL('./img')
@@ -49,11 +49,18 @@ function preload() {
 function useBall() {
     if (ballsRestantantes <= 0) {
         //alert('GAME OVER')
-        console.log('game over')
-        delete game
+        const tiempoGO = new Date()
+        if (gameOver === undefined) {
+            gameOver = {
+                puntaje,
+                tiempo: (tiempoGO - startTime)/1000
+            }
+        }
+        console.log('gameover', gameOver)
     } else {
         ballsRestantantes--
     }
+    return gameOver
 }
 
 function up1() {
@@ -63,6 +70,7 @@ function up1() {
 }
 
 function create() {
+    startTime = new Date()
     let esto = this
     this.add.image(width / 2, height / 2, 'bg')
     const textSettings = { font: '16px Courier', fill: '#000000' }
@@ -88,8 +96,8 @@ function create() {
     }
     this.input.on('pointermove', function (pointer) {
         if (pointer.isDown) {
-                esto.add.image(pointer.x, pointer.y, 'ball')
-                useBall()
+            esto.add.image(pointer.x, pointer.y, 'ball')
+            useBall()
         }
     })
     this.input.on('gameobjectdown', onObjectClicked)
@@ -98,7 +106,7 @@ function create() {
 function onObjectClicked(pointer, gameObject) {
     gameObject.setPosition(randomX(), randomY())
 }
-
+//to do hacer un game over screen
 function update() {
     //cambiar para que deje de ser un reloj y en su lugar cuente cuantos
     //segundos pasaron desde que comenzo el juego
