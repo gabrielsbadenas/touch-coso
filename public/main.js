@@ -24,7 +24,8 @@ const width = 640, height = 480,
         'jigglypuff', 'oddish', 'pikachu',
         'rattata', 'snorlax', 'squirtle'
     ]
-let game = new Phaser.Game(config), time
+
+let game = new Phaser.Game(config), timeText
 
 function preload() {
     this.load.setBaseURL('./img')
@@ -42,26 +43,26 @@ function preload() {
         const element = pkmnList.list[index];
         const elementPNG = pkmnList.png[index];
         this.load.image(element, elementPNG)
-
     }
 }
+
 function create() {
     let puntaje = 0
     this.add.image(width / 2, height / 2, 'bg')
-    let text = this.add.text(16, 16, '', { font: '16px Courier', fill: '#000000' })
-    text.setText([
-        'Points: '
-    ])
+    const textSettings = { font: '16px Courier', fill: '#000000' }
+    let text = this.add.text(16, 16, '', textSettings)
+    text.setText(['Points: '])
+    timeText = this.add.text(16, 32, '', textSettings)
+    timeText.setText(['Time: '])
     for (let index = 1; index < spriteList.length; index++) {
         const element = spriteList[index];
         const sprite = this.physics.add.sprite(
             randomX(), randomY(), element).setInteractive()
-        //sprite.setColliderWorldBounds(true)
         sprite.on('pointerdown', function (pointer) {
             this.setTint(0x00ff00)
             puntaje++
             text.setText([
-                'Points: '+puntaje
+                'Points: ' + puntaje
             ])
         })
     }
@@ -69,23 +70,26 @@ function create() {
     this.input.on('pointermove', function (pointer) {
         if (pointer.isDown) {
             esto.add.image(pointer.x, pointer.y, 'ball')
-            //console.log(pointer.x, pointer.y)
         }
     })
     this.input.on('gameobjectdown', onObjectClicked)
 }
+
 function onObjectClicked(pointer, gameObject) {
-    //si queres hacer que no aparezcan mas tenes que ponerle una posicion undefined
     gameObject.setPosition(randomX(), randomY())
 }
+
 function update() {
 }
+
 function randomX() {
     return random(16, width - 16)
 }
+
 function randomY() {
     return random(16, height - 16)
 }
-function random(min, max) { // min and max included
+
+function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
