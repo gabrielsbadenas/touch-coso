@@ -25,8 +25,8 @@ const width = 640, height = 480,
         'rattata', 'snorlax', 'squirtle'
     ]
 
-let game = new Phaser.Game(config), timeText
-
+let game = new Phaser.Game(config), timeText, ballsRestantantes = 99, ballText
+//to do hacer que cuando se hace click se reste una pokeball
 function preload() {
     this.load.setBaseURL('./img')
     this.load.image('bg', 'sea-background.png')
@@ -48,12 +48,15 @@ function preload() {
 
 function create() {
     let puntaje = 0
+    let esto = this
     this.add.image(width / 2, height / 2, 'bg')
     const textSettings = { font: '16px Courier', fill: '#000000' }
     let text = this.add.text(16, 16, '', textSettings)
     text.setText(['Points: '])
     timeText = this.add.text(16, 32, '', textSettings)
     timeText.setText(['Time: '])
+    ballText = this.add.text(16, 32 + 16, '', textSettings)
+    ballText.setText(['Balls: ' + ballsRestantantes])
     for (let index = 1; index < spriteList.length; index++) {
         const element = spriteList[index];
         const sprite = this.physics.add.sprite(
@@ -64,12 +67,14 @@ function create() {
             text.setText([
                 'Points: ' + puntaje
             ])
+            esto.add.image(pointer.x, pointer.y, 'ball')
+            ballsRestantantes--
         })
     }
-    let esto = this
     this.input.on('pointermove', function (pointer) {
         if (pointer.isDown) {
             esto.add.image(pointer.x, pointer.y, 'ball')
+            ballsRestantantes--
         }
     })
     this.input.on('gameobjectdown', onObjectClicked)
@@ -80,7 +85,9 @@ function onObjectClicked(pointer, gameObject) {
 }
 
 function update() {
-    timeText.setText(['Time: '+new Date().getSeconds()])
+    timeText.setText(['Time: ' + new Date().getSeconds()])
+
+    ballText.setText(['Balls: ' + ballsRestantantes])
 }
 
 function randomX() {
