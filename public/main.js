@@ -111,7 +111,9 @@ function create() {
 }
 
 function onObjectClicked(pointer, gameObject) {
-    gameObject.setPosition(randomX(), randomY())
+    if (ballsRestantantes > 0) {
+        gameObject.setPosition(randomX(), randomY())
+    }
 }
 //to do hacer un game over screen
 function update() {
@@ -124,7 +126,7 @@ function update() {
     //timeText.setText([startTime+'Time: ' + new Date().getSeconds()])
     ballText.setText(['Balls: ' + ballsRestantantes])
     if (gameOver !== undefined) {
-        text.setText(['GAME OVER; Points: ' + gameOver.puntaje ])
+        text.setText(['GAME OVER; Points: ' + gameOver.puntaje])
         //+ '; Time: ' + gameOver.tiempo])
     } else {
         timeText.setText(['Time: ' + relojSeg])
