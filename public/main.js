@@ -31,6 +31,8 @@ let game = new Phaser.Game(config), timeText,
 //to do hacer que cuando se hace click se reste una pokeball
 function preload() {
     this.load.setBaseURL('./img')
+    //to do cambiar el fondo cuando se llega a cierto puntaje o
+    //pasan cierta cantidad de puntos
     this.load.image('bg', 'sea-background.png')
     function pkmn() {
         const list = spriteList
