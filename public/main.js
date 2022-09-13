@@ -139,7 +139,7 @@ function randomX() {
 }
 
 function randomY() {
-    return random(16, height - 16)
+    return random(32, height - 16)
 }
 
 function random(min, max) {
