@@ -100,11 +100,16 @@ function create() {
     }
     this.input.on('pointermove', function (pointer) {
         if (pointer.isDown) {
-            esto.add.image(pointer.x, pointer.y, 'ball')
-            //\
-            //console.log(pointer.x, pointer.y)
-            //
+
+            if (ballsRestantantes > 0) {
+                esto.add.image(pointer.x, pointer.y, 'ball')
+                //\
+                //console.log(pointer.x, pointer.y)
+                //
+            }
+
             useBall()
+            // }
         }
     })
     this.input.on('gameobjectdown', onObjectClicked)
