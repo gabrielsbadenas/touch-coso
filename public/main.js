@@ -76,7 +76,7 @@ function create() {
     startTime = new Date()
     let esto = this
     this.add.image(width / 2, height / 2, 'bg')
-    let textPos = { y: 4, x: [4, width / 2, width / 1.3] }
+    let textPos = { y: 4, x: [4, (width / 2) + 16, width / 1.3] }
     const textSettings = { font: '16px Courier', fill: '#000000' }
     text = this.add.text(textPos.x[0], textPos.y, '', textSettings)
     text.setText(['Points: 0'])
@@ -122,13 +122,14 @@ function update() {
     let relojSeg = (-reloj) / 1000
     //console.log(reloj, segundos)
     //timeText.setText([startTime+'Time: ' + new Date().getSeconds()])
-    timeText.setText(['Time: ' + relojSeg])
     ballText.setText(['Balls: ' + ballsRestantantes])
     if (gameOver !== undefined) {
-        text.setText(['GAME OVER; Points: ' + gameOver.puntaje + '; Time: ' + gameOver.tiempo])
+        text.setText(['GAME OVER; Points: ' + gameOver.puntaje ])
+        //+ '; Time: ' + gameOver.tiempo])
+    } else {
+        timeText.setText(['Time: ' + relojSeg])
     }
-    /*
-    if(gameover!=undefined){
+    /*    if(gameover!=undefined){
         game.add.text(
             'game over'+
             gameover.puntaje+gameover.tiempo
