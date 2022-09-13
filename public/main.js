@@ -27,7 +27,7 @@ const width = 640, height = 480,
 
 let game = new Phaser.Game(config), timeText,
     ballsRestantantes = 99, ballText, puntaje = 0,
-    startTime, gameOver
+    startTime, gameOver, text
 //to do hacer que cuando se hace click se reste una pokeball
 function preload() {
     this.load.setBaseURL('./img')
@@ -78,8 +78,8 @@ function create() {
     this.add.image(width / 2, height / 2, 'bg')
     let textPos = { y: 4, x: [4, width / 2, width / 1.3] }
     const textSettings = { font: '16px Courier', fill: '#000000' }
-    let text = this.add.text(textPos.x[0], textPos.y, '', textSettings)
-    text.setText(['Points: '])
+    text = this.add.text(textPos.x[0], textPos.y, '', textSettings)
+    text.setText(['Points: 0'])
     timeText = this.add.text(textPos.x[1], textPos.y, '', textSettings)
     timeText.setText(['Time: '])
     ballText = this.add.text(textPos.x[2], textPos.y, '', textSettings)
@@ -124,6 +124,9 @@ function update() {
     //timeText.setText([startTime+'Time: ' + new Date().getSeconds()])
     timeText.setText(['Time: ' + relojSeg])
     ballText.setText(['Balls: ' + ballsRestantantes])
+    if (gameOver !== undefined) {
+        text.setText(['GAME OVER; Points: ' + gameOver.puntaje + '; Time: ' + gameOver.tiempo])
+    }
     /*
     if(gameover!=undefined){
         game.add.text(
