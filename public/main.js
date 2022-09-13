@@ -25,7 +25,9 @@ const width = 640, height = 480,
         'rattata', 'snorlax', 'squirtle'
     ]
 
-let game = new Phaser.Game(config), timeText, ballsRestantantes = 99, ballText, puntaje = 0, startTime, gameOver
+let game = new Phaser.Game(config), timeText,
+    ballsRestantantes = 99, ballText, puntaje = 0,
+    startTime, gameOver
 //to do hacer que cuando se hace click se reste una pokeball
 function preload() {
     this.load.setBaseURL('./img')
@@ -53,7 +55,8 @@ function useBall() {
         if (gameOver === undefined) {
             gameOver = {
                 puntaje,
-                tiempo: (tiempoGO - startTime)/1000
+                tiempo:
+                    (tiempoGO - startTime) / 1000
             }
         }
         console.log('gameover', gameOver)
@@ -73,12 +76,13 @@ function create() {
     startTime = new Date()
     let esto = this
     this.add.image(width / 2, height / 2, 'bg')
+    let textPos = { y: 4, x: [4, width / 2, width / 1.3] }
     const textSettings = { font: '16px Courier', fill: '#000000' }
-    let text = this.add.text(16, 16, '', textSettings)
+    let text = this.add.text(textPos.x[0], textPos.y, '', textSettings)
     text.setText(['Points: '])
-    timeText = this.add.text(16, 32, '', textSettings)
+    timeText = this.add.text(textPos.x[1], textPos.y, '', textSettings)
     timeText.setText(['Time: '])
-    ballText = this.add.text(16, 32 + 16, '', textSettings)
+    ballText = this.add.text(textPos.x[2], textPos.y, '', textSettings)
     ballText.setText(['Balls: ' + ballsRestantantes])
     for (let index = 1; index < spriteList.length; index++) {
         const element = spriteList[index];
@@ -97,6 +101,9 @@ function create() {
     this.input.on('pointermove', function (pointer) {
         if (pointer.isDown) {
             esto.add.image(pointer.x, pointer.y, 'ball')
+            //\
+            //console.log(pointer.x, pointer.y)
+            //
             useBall()
         }
     })
@@ -110,9 +117,21 @@ function onObjectClicked(pointer, gameObject) {
 function update() {
     //cambiar para que deje de ser un reloj y en su lugar cuente cuantos
     //segundos pasaron desde que comenzo el juego
-    timeText.setText(['Time: ' + new Date().getSeconds()])
-
+    let reloj = startTime - new Date()
+    //let segundos = startTime.getSeconds()
+    let relojSeg = (-reloj) / 1000
+    //console.log(reloj, segundos)
+    //timeText.setText([startTime+'Time: ' + new Date().getSeconds()])
+    timeText.setText(['Time: ' + relojSeg])
     ballText.setText(['Balls: ' + ballsRestantantes])
+    /*
+    if(gameover!=undefined){
+        game.add.text(
+            'game over'+
+            gameover.puntaje+gameover.tiempo
+        )
+    }
+    */
 }
 
 function randomX() {
