@@ -3,10 +3,10 @@ const express = require('express'),
 	app = express(),
 	port = 3000
 app.use(express.static(process.cwd() + '/public'));
-app.get('/',(q,s)=>{
-s.send('helo world')
+app.get('/', (q, s) => {
+	s.send('helo world')
 })
-app.listen(port,()=>{
-console.log('localhost:'+port)
+app.listen(port, () => {
+	console.log('localhost:' + port)
 }
 )
