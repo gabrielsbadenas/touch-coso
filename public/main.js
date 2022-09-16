@@ -60,6 +60,11 @@ function useBall() {
                     (tiempoGO - startTime) / 1000
             }
         }
+        /*
+        document.cookie="points"+new Date()+"="+gameOver.puntaje+
+        " tiempo"+new Date()+"="+gameOver.tiempo+"; expires=01 Jan 2023 00:00:00 UTC; path=/;"
+        console.log(document.cookie)
+        */
         //console.log('gameover', gameOver)
     } else {
         ballsRestantantes--
@@ -76,7 +81,9 @@ function up1() {
 function create() {
     startTime = new Date()
     let esto = this
-    this.add.image(width / 2, height / 2, 'bg')
+    const layer0 = this.add.layer()
+    layer0.add(this.add.image(width / 2, height / 2, 'bg'))
+    const textLayer = this.add.layer()
     let textPos = { y: 4, x: [4, 255, width - 90] }
     const textSettings = { font: '16px Courier', fill: '#000000' }
     text = this.add.text(textPos.x[0], textPos.y, '', textSettings)
@@ -85,6 +92,10 @@ function create() {
     timeText.setText(['Time: '])
     ballText = this.add.text(textPos.x[2], textPos.y, '', textSettings)
     ballText.setText(['Balls: ' + ballsRestantantes])
+    textLayer.add(text)
+    textLayer.add(timeText)
+    textLayer.add(ballText)
+    console.log(textLayer.depth,layer0.depth)
     for (let index = 1; index < spriteList.length; index++) {
         const element = spriteList[index];
         const sprite = this.physics.add.sprite(
