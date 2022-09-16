@@ -40,7 +40,7 @@ function preload() {
         list.forEach(element => {
             png.push(element + '.png')
         });
-        return { list, png }
+        return { list, png };
     }
     const pkmnList = pkmn()
     for (let index = 0; index < pkmnList.list.length; index++) {
@@ -52,7 +52,6 @@ function preload() {
 
 function useBall() {
     if (ballsRestantantes <= 0) {
-        //alert('GAME OVER')
         const tiempoGO = new Date()
         if (gameOver === undefined) {
             gameOver = {
@@ -61,16 +60,16 @@ function useBall() {
                     (tiempoGO - startTime) / 1000
             }
         }
-        console.log('gameover', gameOver)
+        //console.log('gameover', gameOver)
     } else {
         ballsRestantantes--
     }
-    return gameOver
+    return gameOver;
 }
 
 function up1() {
     if (!(ballsRestantantes <= 0)) {
-        puntaje++
+        puntaje++;
     }
 }
 
@@ -78,7 +77,7 @@ function create() {
     startTime = new Date()
     let esto = this
     this.add.image(width / 2, height / 2, 'bg')
-    let textPos = { y: 4, x: [4, (width / 2) + 16, width / 1.3] }
+    let textPos = { y: 4, x: [4, 255, width - 90] }
     const textSettings = { font: '16px Courier', fill: '#000000' }
     text = this.add.text(textPos.x[0], textPos.y, '', textSettings)
     text.setText(['Points: 0'])
@@ -105,9 +104,7 @@ function create() {
 
             if (ballsRestantantes > 0) {
                 esto.add.image(pointer.x, pointer.y, 'ball')
-                //\
-                //console.log(pointer.x, pointer.y)
-                //
+                //   console.log(pointer.x, pointer.y)
             }
 
             useBall()
@@ -127,24 +124,15 @@ function update() {
     //cambiar para que deje de ser un reloj y en su lugar cuente cuantos
     //segundos pasaron desde que comenzo el juego
     let reloj = startTime - new Date()
-    //let segundos = startTime.getSeconds()
     let relojSeg = (-reloj) / 1000
-    //console.log(reloj, segundos)
-    //timeText.setText([startTime+'Time: ' + new Date().getSeconds()])
     ballText.setText(['Balls: ' + ballsRestantantes])
     if (gameOver !== undefined) {
+        this.add.image(width / 2, (height / 2) + 32, 'bg')
         text.setText(['GAME OVER; Points: ' + gameOver.puntaje])
         //+ '; Time: ' + gameOver.tiempo])
     } else {
         timeText.setText(['Time: ' + relojSeg])
     }
-    /*    if(gameover!=undefined){
-        game.add.text(
-            'game over'+
-            gameover.puntaje+gameover.tiempo
-        )
-    }
-    */
 }
 
 function randomX() {
